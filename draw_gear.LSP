@@ -48,15 +48,6 @@
   (command "_LINE" (list 0 0 0) (list 0 0 height) "")									;sweep
   (setq sw_line (entlast))												;
   (command "_SWEEP" gear "" "T" helix_angle sw_line)									;
-  (setq gear (ssget "x"))
-  (setq delta total_base_thickness)											;draw characteristic curve
-  (setq A1 (list (- delta) (+ tip_r 1) (- (/ height 2) (* delta (tan (dtr helix_angle))))))				;
-  (setq A2 (list delta (+ tip_r 1) (+ (/ height 2) (* delta (tan (dtr helix_angle))))))					;
-  (command "_LINE" A1 A2 "")												;
-  (setq proj_line (entlast))												;
-  (command "_DVIEW" proj_line "" "CA" 0 90 "")										;
-  (command "_PROJECTGEOMETRY" proj_line "" gear "")									;
-  (entdel proj_line)													;
   (princ)
   );defun
 
